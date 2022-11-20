@@ -9,10 +9,10 @@ import (
 
 func D01() {
 	fmt.Println("Day 01")
-	part1("inputs/01.txt")
+	solution("inputs/01.txt")
 }
 
-func part1(filename string) {
+func solution(filename string) {
 	file, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
