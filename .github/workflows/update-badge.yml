@@ -10,8 +10,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: joblo2213/aoc-badges-action@v3
         with:
-          userid: ${{ secrets.USER_ID }}
-          session: ${{ secrets.SESSION_ID }}
+          userid: ${{ secrets.AOC_USER_ID }}
+          session: ${{ secrets.AOC_SESSION_ID }}
           year: 2015
           leaderboard: "https://adventofcode.com/2015/leaderboard/private/view/1105641.json"
           file: "README.md"
