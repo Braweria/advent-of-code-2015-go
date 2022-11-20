@@ -1,5 +1,7 @@
 package main
 
+import "advent-of-code-2015/days"
+
 func main() {
-	Day01()
+	days.D01()
 }
