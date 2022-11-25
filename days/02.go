@@ -15,9 +15,11 @@ func D02() {
 
 func solution2(filename string) {
 	file := GetFile(filename)
+	defer file.Close()
 
 	var wrappingPaper float64
-	wrappingPaper = -1
+	wrappingPaper = 0
+	ribbonLength := 0.0
 
 	var prisms []PrismSides
 
@@ -35,13 +37,15 @@ func solution2(filename string) {
 		prisms = append(prisms, prism)
 	}
 
-	fmt.Println(prisms)
 	for _, prism := range prisms {
 		paperArea := prism.paperArea()
 		wrappingPaper += paperArea
+
+		length := prism.ribbonLength()
+		ribbonLength += length
 	}
 
-	fmt.Printf("Part I:  %v\nPart II: %v", wrappingPaper, 0)
+	fmt.Printf("Part I:  %.5f\nPart II: %.5f", wrappingPaper, ribbonLength)
 }
 
 type PrismSides struct {
@@ -58,4 +62,15 @@ func (prism *PrismSides) paperArea() float64 {
 	smallestArea := math.Min(lw, math.Min(lh, wh)) / 2
 
 	return lw + lh + wh + smallestArea
+}
+
+func (prism *PrismSides) ribbonLength() float64 {
+	lw := (prism.length + prism.length) + (prism.width + prism.width)
+	wh := (prism.height + prism.height) + (prism.width + prism.width)
+
+	smallestLength := math.Min(lw, wh)
+
+	cubic := prism.height * prism.width * prism.length
+
+	return cubic + smallestLength
 }
