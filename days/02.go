@@ -67,8 +67,9 @@ func (prism *PrismSides) paperArea() float64 {
 func (prism *PrismSides) ribbonLength() float64 {
 	lw := (prism.length + prism.length) + (prism.width + prism.width)
 	wh := (prism.height + prism.height) + (prism.width + prism.width)
+	hl := (prism.height + prism.height) + (prism.length + prism.length)
 
-	smallestLength := math.Min(lw, wh)
+	smallestLength := math.Min(lw, math.Min(wh, hl))
 
 	cubic := prism.height * prism.width * prism.length
 
