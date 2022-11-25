@@ -10,7 +10,6 @@ func GetFile(filename string) *os.File {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer file.Close()
 
 	return file
 }
