@@ -1,21 +1,42 @@
 package days
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+)
 
 type Coord struct {
 	x, y int
 }
 
-func (coord *Coord) update(value string) {
+type Visited map[Coord]int
+
+type Santa struct {
+	position     Coord
+	visited      Visited
+	uniqueHouses int
+}
+
+func (santa *Santa) moveTo(value string) {
 	switch value {
 	case "^":
-		coord.y++
+		santa.position.y++
 	case "v":
-		coord.y--
+		santa.position.y--
 	case "<":
-		coord.x--
+		santa.position.x--
 	case ">":
-		coord.x++
+		santa.position.x++
+	}
+}
+
+func (santa *Santa) deliver() {
+	visited, exists := santa.visited[santa.position]
+	if exists {
+		santa.visited[santa.position] = visited + 1
+	} else {
+		santa.visited[santa.position] = 1
+		santa.uniqueHouses++
 	}
 }
 
@@ -23,9 +44,18 @@ func D03() {
 	file := GetFile("inputs/03.txt")
 	defer file.Close()
 
-	coords := map[Coord]int{Coord{0, 0}: 0}
+	start := Coord{0, 0}
+	startVisited := Visited{start: 1}
+	santa := Santa{start, startVisited, 1}
 
-	coord := &Coord{0, 0}
+	scanner := bufio.NewScanner(file)
+	scanner.Split(bufio.ScanRunes)
 
-	fmt.Println(x, y)
+	for scanner.Scan() {
+		char := scanner.Text()
+		santa.moveTo(char)
+		santa.deliver()
+	}
+
+	fmt.Println(santa.uniqueHouses)
 }
