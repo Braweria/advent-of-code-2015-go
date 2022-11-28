@@ -2,14 +2,12 @@ package days
 
 import (
 	"bufio"
-	"fmt"
 	"math"
 	"strconv"
 	"strings"
 )
 
 func D02() {
-	fmt.Printf("\nDay 02\n")
 	solution2("inputs/02.txt")
 }
 
@@ -45,7 +43,6 @@ func solution2(filename string) {
 		ribbonLength += length
 	}
 
-	fmt.Printf("Part I:  %.5f\nPart II: %.5f", wrappingPaper, ribbonLength)
 }
 
 type PrismSides struct {

@@ -2,13 +2,11 @@ package days
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 )
 
 func D01() {
-	fmt.Println("Day 01")
 	solution("inputs/01.txt")
 }
 
@@ -36,5 +34,4 @@ func solution(filename string) {
 			}
 		}
 	}
-	fmt.Printf("Part I:  %v\nPart II: %v", floor, basement)
 }
