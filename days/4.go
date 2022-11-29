@@ -9,16 +9,20 @@ import (
 
 func D04() {
 	const input = "iwrupvqb"
-	result := 0
+	result1 := 0
+	result2 := 0
 
-	for i := 1; result == 0; i++ {
+	for i := 1; result1 == 0 || result2 == 0; i++ {
 		secret := input + strconv.Itoa(i)
 		hash := md5Converter(secret)
-		if strings.HasPrefix(hash, "00000") {
-			result = i
+		if strings.HasPrefix(hash, "00000") && result1 == 0 {
+			result1 = i
+		}
+		if strings.HasPrefix(hash, "000000") && result2 == 0 {
+			result2 = i
 		}
 	}
-	fmt.Println(result)
+	fmt.Println(result1, result2)
 }
 
 func md5Converter(input string) string {
