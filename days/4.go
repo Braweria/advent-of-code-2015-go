@@ -22,7 +22,6 @@ func D04() {
 			result2 = i
 		}
 	}
-	fmt.Println(result1, result2)
 }
 
 func md5Converter(input string) string {
